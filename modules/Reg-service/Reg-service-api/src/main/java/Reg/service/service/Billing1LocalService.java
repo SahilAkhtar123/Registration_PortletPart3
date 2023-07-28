@@ -258,6 +258,10 @@ public interface Billing1LocalService
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Billing1> getStudentsByPostalCode(String zip)
+		throws PortalException, SystemException;
+
 	/**
 	 * Updates the billing1 in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

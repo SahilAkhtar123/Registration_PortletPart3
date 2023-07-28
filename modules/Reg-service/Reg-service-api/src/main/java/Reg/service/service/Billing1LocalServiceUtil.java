@@ -19,6 +19,7 @@ import Reg.service.model.Billing1;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
@@ -284,6 +285,12 @@ public class Billing1LocalServiceUtil {
 		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static List<Billing1> getStudentsByPostalCode(String zip)
+		throws PortalException, SystemException {
+
+		return getService().getStudentsByPostalCode(zip);
 	}
 
 	/**

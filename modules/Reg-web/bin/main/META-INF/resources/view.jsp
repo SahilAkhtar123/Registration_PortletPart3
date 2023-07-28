@@ -46,26 +46,25 @@
         <aui:button type="submit" value="Register" />
     </aui:form>
 </div>
-
-
+<div class="search-form">
+        <aui:input label="Enter Postal Code" name="postalCode" required="true" validator="digits,minLength(5),maxLength(5)" />
+        <aui:button type="submit" value="Search" />
+</div>
 <%
-    
-        // Fetch the list of all Student1 entities from the database
-        List<Student1> students = Student1LocalServiceUtil.getStudent1s(-1,-1);
-        // Loop through the list and display student information
-        out.println("<br>");
-        for (Student1 student : students)
-        {
-        	
-            out.println("User ID: " + student.getUserId());
-            out.println("Event Date: " + student.getEventDate());
-            out.println("Event Type: " + student.getEventType());
-            out.println("IP Address: " + student.getIpAddress());
-            // Display other attributes as needed
-            out.println("<br>");
+        List<Billing1> billings = (List<Billing1>) request.getAttribute("billings");
+        if (billings == null || billings.isEmpty()) {
+            out.println("No results found. Please try a different search criteria.");
+        } else {
+            for (Billing1 billing : billings) {
+                out.println("User ID: " + billing.getUserId());
+                //out.println("Event Date: " + student.getEventDate());
+                //out.println("Event Type: " + student.getEventType());
+                out.println("Zip: " + billing.getZip());
+                // Display other attributes as needed
+                out.println("<br>");
+            }
         }
-       
-%>
+    %>
 
 
 

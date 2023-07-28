@@ -15,8 +15,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
 <%@ page import="com.liferay.portal.kernel.model.User" %>
-<%@ page import="Reg.service.service.Student1LocalServiceUtil" %>
-<%@ page import="Reg.service.model.Student1" %>
+<%@ page import="Reg.service.service.Billing1LocalServiceUtil" %>
+<%@ page import="Reg.service.model.Billing1" %>
 
 <liferay-theme:defineObjects />
 

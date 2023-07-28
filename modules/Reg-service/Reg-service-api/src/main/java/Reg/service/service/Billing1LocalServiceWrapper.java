@@ -314,6 +314,15 @@ public class Billing1LocalServiceWrapper
 		return _billing1LocalService.getPersistedModel(primaryKeyObj);
 	}
 
+	@Override
+	public java.util.List<Reg.service.model.Billing1> getStudentsByPostalCode(
+			String zip)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			   com.liferay.portal.kernel.exception.SystemException {
+
+		return _billing1LocalService.getStudentsByPostalCode(zip);
+	}
+
 	/**
 	 * Updates the billing1 in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

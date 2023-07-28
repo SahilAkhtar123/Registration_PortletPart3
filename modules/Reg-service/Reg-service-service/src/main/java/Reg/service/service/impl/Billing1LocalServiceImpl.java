@@ -15,10 +15,16 @@
 package Reg.service.service.impl;
 
 import Reg.service.model.Billing1;
+import Reg.service.service.Billing1LocalServiceUtil;
 import Reg.service.service.base.Billing1LocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+
+import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -57,5 +63,11 @@ public class Billing1LocalServiceImpl extends Billing1LocalServiceBaseImpl {
 		public Billing1 deleteBilling1(long billingAddressId) throws PortalException {
 			Billing1 billingAddress = getBilling1(billingAddressId);
 			return deleteBilling1(billingAddress);
+		}
+		
+		public List<Billing1> getStudentsByPostalCode(String zip) throws PortalException, SystemException {
+		    DynamicQuery dynamicQuery = Billing1LocalServiceUtil.dynamicQuery()
+		        .add(PropertyFactoryUtil.forName("zip").eq(zip));
+		    return Billing1LocalServiceUtil.dynamicQuery(dynamicQuery);
 		}
 	}

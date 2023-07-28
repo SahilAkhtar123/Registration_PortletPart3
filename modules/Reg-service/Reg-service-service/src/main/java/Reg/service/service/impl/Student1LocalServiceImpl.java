@@ -86,7 +86,7 @@ public class Student1LocalServiceImpl extends Student1LocalServiceBaseImpl {
 				}
 				// Validate birthday
 				int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-				int minAllowedYear = currentYear - 13; // Must be at least 13 years old to register
+				int minAllowedYear = currentYear - 13; 
 				if (birthdayYear > currentYear || birthdayYear < (minAllowedYear - 120)) {
 					throw new IllegalArgumentException("Invalid birth year.");
 				}

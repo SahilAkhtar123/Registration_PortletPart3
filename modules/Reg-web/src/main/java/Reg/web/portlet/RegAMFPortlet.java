@@ -1,5 +1,6 @@
 package Reg.web.portlet;
 
+import Reg.service.model.Billing1;
 import Reg.service.model.Student1;
 import Reg.service.model.impl.Student1Impl;
 import Reg.service.service.Billing1LocalService;
@@ -29,11 +30,15 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
+import javax.portlet.PortletException;
 import javax.portlet.ProcessAction;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 import javax.xml.crypto.Data;
 
 import org.osgi.service.component.annotations.Component;
@@ -135,6 +140,18 @@ public class RegAMFPortlet extends MVCPortlet {
 		response.sendRedirect(registrationURL);
 
 	}
+	
+	@Override
+    public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
+        String zip = renderRequest.getParameter("zip");
+        try {
+            List<Billing1> billings = Billing1LocalServiceUtil.getStudentsByPostalCode(zip);
+            renderRequest.setAttribute("billings", billings);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.render(renderRequest, renderResponse);
+    }
 	@Reference
 	private Student1LocalService _student1localService;
 	@Reference

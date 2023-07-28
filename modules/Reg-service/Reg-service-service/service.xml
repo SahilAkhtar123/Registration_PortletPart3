@@ -24,6 +24,7 @@
 		<column name="eventType" type="String" />
 		<column name="ipAddress" type="String" />
 		
+		
 		<finder name="Username" return-type="Collection">
 			<finder-column name="username" />
 			</finder>
