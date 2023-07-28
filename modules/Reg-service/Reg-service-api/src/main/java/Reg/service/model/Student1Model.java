@@ -17,6 +17,8 @@ package Reg.service.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 
+import java.util.Date;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -299,6 +301,50 @@ public interface Student1Model extends BaseModel<Student1> {
 	 * @param acceptedTermsOfUse the accepted terms of use of this student1
 	 */
 	public void setAcceptedTermsOfUse(boolean acceptedTermsOfUse);
+
+	/**
+	 * Returns the event date of this student1.
+	 *
+	 * @return the event date of this student1
+	 */
+	public Date getEventDate();
+
+	/**
+	 * Sets the event date of this student1.
+	 *
+	 * @param eventDate the event date of this student1
+	 */
+	public void setEventDate(Date eventDate);
+
+	/**
+	 * Returns the event type of this student1.
+	 *
+	 * @return the event type of this student1
+	 */
+	@AutoEscape
+	public String getEventType();
+
+	/**
+	 * Sets the event type of this student1.
+	 *
+	 * @param eventType the event type of this student1
+	 */
+	public void setEventType(String eventType);
+
+	/**
+	 * Returns the ip address of this student1.
+	 *
+	 * @return the ip address of this student1
+	 */
+	@AutoEscape
+	public String getIpAddress();
+
+	/**
+	 * Sets the ip address of this student1.
+	 *
+	 * @param ipAddress the ip address of this student1
+	 */
+	public void setIpAddress(String ipAddress);
 
 	@Override
 	public Student1 cloneWithOriginalValues();

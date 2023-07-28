@@ -1,4 +1,5 @@
 <%@ include file="./init.jsp" %>
+
 <portlet:actionURL name="registerUser" var="registrationURL" />
 <div class="registration-form">
     <aui:form action="<%= registrationURL %>" method="post">
@@ -45,3 +46,28 @@
         <aui:button type="submit" value="Register" />
     </aui:form>
 </div>
+
+
+<%
+    
+        // Fetch the list of all Student1 entities from the database
+        List<Student1> students = Student1LocalServiceUtil.getStudent1s(-1,-1);
+        // Loop through the list and display student information
+        out.println("<br>");
+        for (Student1 student : students)
+        {
+        	
+            out.println("User ID: " + student.getUserId());
+            out.println("Event Date: " + student.getEventDate());
+            out.println("Event Type: " + student.getEventType());
+            out.println("IP Address: " + student.getIpAddress());
+            // Display other attributes as needed
+            out.println("<br>");
+        }
+       
+%>
+
+
+
+
+

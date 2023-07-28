@@ -78,7 +78,8 @@ public class Student1ModelImpl
 		{"birthdayDay", Types.INTEGER}, {"birthdayYear", Types.INTEGER},
 		{"password1", Types.VARCHAR}, {"password2", Types.VARCHAR},
 		{"securityQuestion", Types.VARCHAR}, {"securityAnswer", Types.VARCHAR},
-		{"acceptedTermsOfUse", Types.BOOLEAN}
+		{"acceptedTermsOfUse", Types.BOOLEAN}, {"eventDate", Types.TIMESTAMP},
+		{"eventType", Types.VARCHAR}, {"ipAddress", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -100,10 +101,13 @@ public class Student1ModelImpl
 		TABLE_COLUMNS_MAP.put("securityQuestion", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("securityAnswer", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("acceptedTermsOfUse", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("eventDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("eventType", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("ipAddress", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table Yash_Student1 (uuid_ VARCHAR(75) null,userId LONG not null primary key,firstName VARCHAR(75) null,lastName VARCHAR(75) null,emailAddress VARCHAR(75) null,username VARCHAR(75) null,male BOOLEAN,birthdayMonth INTEGER,birthdayDay INTEGER,birthdayYear INTEGER,password1 VARCHAR(75) null,password2 VARCHAR(75) null,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTermsOfUse BOOLEAN)";
+		"create table Yash_Student1 (uuid_ VARCHAR(75) null,userId LONG not null primary key,firstName VARCHAR(75) null,lastName VARCHAR(75) null,emailAddress VARCHAR(75) null,username VARCHAR(75) null,male BOOLEAN,birthdayMonth INTEGER,birthdayDay INTEGER,birthdayYear INTEGER,password1 VARCHAR(75) null,password2 VARCHAR(75) null,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTermsOfUse BOOLEAN,eventDate DATE null,eventType VARCHAR(75) null,ipAddress VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table Yash_Student1";
 
@@ -302,6 +306,15 @@ public class Student1ModelImpl
 		attributeSetterBiConsumers.put(
 			"acceptedTermsOfUse",
 			(BiConsumer<Student1, Boolean>)Student1::setAcceptedTermsOfUse);
+		attributeGetterFunctions.put("eventDate", Student1::getEventDate);
+		attributeSetterBiConsumers.put(
+			"eventDate", (BiConsumer<Student1, Date>)Student1::setEventDate);
+		attributeGetterFunctions.put("eventType", Student1::getEventType);
+		attributeSetterBiConsumers.put(
+			"eventType", (BiConsumer<Student1, String>)Student1::setEventType);
+		attributeGetterFunctions.put("ipAddress", Student1::getIpAddress);
+		attributeSetterBiConsumers.put(
+			"ipAddress", (BiConsumer<Student1, String>)Student1::setIpAddress);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -625,6 +638,61 @@ public class Student1ModelImpl
 		_acceptedTermsOfUse = acceptedTermsOfUse;
 	}
 
+	@JSON
+	@Override
+	public Date getEventDate() {
+		return _eventDate;
+	}
+
+	@Override
+	public void setEventDate(Date eventDate) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_eventDate = eventDate;
+	}
+
+	@JSON
+	@Override
+	public String getEventType() {
+		if (_eventType == null) {
+			return "";
+		}
+		else {
+			return _eventType;
+		}
+	}
+
+	@Override
+	public void setEventType(String eventType) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_eventType = eventType;
+	}
+
+	@JSON
+	@Override
+	public String getIpAddress() {
+		if (_ipAddress == null) {
+			return "";
+		}
+		else {
+			return _ipAddress;
+		}
+	}
+
+	@Override
+	public void setIpAddress(String ipAddress) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_ipAddress = ipAddress;
+	}
+
 	public long getColumnBitmask() {
 		if (_columnBitmask > 0) {
 			return _columnBitmask;
@@ -696,6 +764,9 @@ public class Student1ModelImpl
 		student1Impl.setSecurityQuestion(getSecurityQuestion());
 		student1Impl.setSecurityAnswer(getSecurityAnswer());
 		student1Impl.setAcceptedTermsOfUse(isAcceptedTermsOfUse());
+		student1Impl.setEventDate(getEventDate());
+		student1Impl.setEventType(getEventType());
+		student1Impl.setIpAddress(getIpAddress());
 
 		student1Impl.resetOriginalValues();
 
@@ -733,6 +804,12 @@ public class Student1ModelImpl
 			this.<String>getColumnOriginalValue("securityAnswer"));
 		student1Impl.setAcceptedTermsOfUse(
 			this.<Boolean>getColumnOriginalValue("acceptedTermsOfUse"));
+		student1Impl.setEventDate(
+			this.<Date>getColumnOriginalValue("eventDate"));
+		student1Impl.setEventType(
+			this.<String>getColumnOriginalValue("eventType"));
+		student1Impl.setIpAddress(
+			this.<String>getColumnOriginalValue("ipAddress"));
 
 		return student1Impl;
 	}
@@ -892,6 +969,31 @@ public class Student1ModelImpl
 
 		student1CacheModel.acceptedTermsOfUse = isAcceptedTermsOfUse();
 
+		Date eventDate = getEventDate();
+
+		if (eventDate != null) {
+			student1CacheModel.eventDate = eventDate.getTime();
+		}
+		else {
+			student1CacheModel.eventDate = Long.MIN_VALUE;
+		}
+
+		student1CacheModel.eventType = getEventType();
+
+		String eventType = student1CacheModel.eventType;
+
+		if ((eventType != null) && (eventType.length() == 0)) {
+			student1CacheModel.eventType = null;
+		}
+
+		student1CacheModel.ipAddress = getIpAddress();
+
+		String ipAddress = student1CacheModel.ipAddress;
+
+		if ((ipAddress != null) && (ipAddress.length() == 0)) {
+			student1CacheModel.ipAddress = null;
+		}
+
 		return student1CacheModel;
 	}
 
@@ -968,6 +1070,9 @@ public class Student1ModelImpl
 	private String _securityQuestion;
 	private String _securityAnswer;
 	private boolean _acceptedTermsOfUse;
+	private Date _eventDate;
+	private String _eventType;
+	private String _ipAddress;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);
@@ -1013,6 +1118,9 @@ public class Student1ModelImpl
 		_columnOriginalValues.put("securityQuestion", _securityQuestion);
 		_columnOriginalValues.put("securityAnswer", _securityAnswer);
 		_columnOriginalValues.put("acceptedTermsOfUse", _acceptedTermsOfUse);
+		_columnOriginalValues.put("eventDate", _eventDate);
+		_columnOriginalValues.put("eventType", _eventType);
+		_columnOriginalValues.put("ipAddress", _ipAddress);
 	}
 
 	private static final Map<String, String> _attributeNames;
@@ -1065,6 +1173,12 @@ public class Student1ModelImpl
 		columnBitmasks.put("securityAnswer", 8192L);
 
 		columnBitmasks.put("acceptedTermsOfUse", 16384L);
+
+		columnBitmasks.put("eventDate", 32768L);
+
+		columnBitmasks.put("eventType", 65536L);
+
+		columnBitmasks.put("ipAddress", 131072L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

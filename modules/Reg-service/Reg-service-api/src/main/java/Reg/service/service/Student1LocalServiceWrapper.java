@@ -315,6 +315,13 @@ public class Student1LocalServiceWrapper
 		return _student1LocalService.getStudent1s(start, end);
 	}
 
+	@Override
+	public java.util.List<Reg.service.model.Student1> getStudent1s(
+		String username, int start, int end) {
+
+		return _student1LocalService.getStudent1s(username, start, end);
+	}
+
 	/**
 	 * Returns the number of student1s.
 	 *

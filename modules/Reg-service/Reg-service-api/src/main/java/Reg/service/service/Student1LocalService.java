@@ -252,6 +252,9 @@ public interface Student1LocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Student1> getStudent1s(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Student1> getStudent1s(String username, int start, int end);
+
 	/**
 	 * Returns the number of student1s.
 	 *

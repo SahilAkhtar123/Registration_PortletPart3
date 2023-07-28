@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -91,6 +92,10 @@ public class Student1LocalServiceImpl extends Student1LocalServiceBaseImpl {
 				}
 				// Additional validations can be added here if needed.
 				// All validations passed, create the user
+				
+				Date eventDate = new Date();
+				String eventType = "registration";
+				String ipAddress = "0.0.0.0";
 				Student1 student1 = createStudent1(counterLocalService.increment(Student1.class.getName()));
 				student1.setFirstName(firstName);
 				student1.setLastName(lastName);
@@ -105,6 +110,10 @@ public class Student1LocalServiceImpl extends Student1LocalServiceBaseImpl {
 				student1.setSecurityQuestion(securityQuestion);
 				student1.setSecurityAnswer(securityAnswer);
 				student1.setAcceptedTermsOfUse(acceptedTerms);
+				
+				student1.setEventDate(eventDate);
+				student1.setEventType(eventType);
+				student1.setIpAddress(ipAddress);
 				student1 = student1LocalService.updateStudent1(student1);
 				//studentlocalServiceUtil
 				//student1Persistence.update(student1);
@@ -115,6 +124,17 @@ public class Student1LocalServiceImpl extends Student1LocalServiceBaseImpl {
 				return student1;
 				
 	}
+	
+	public List<Student1> getStudent1s(String username, int start, int end) {
+
+		return student1Persistence.findByUsername(username,start, end);
+	}
+	
+	public List<Student1> getStudent1s(int start, int end) {
+
+		return student1Persistence.findAll(start, end);
+	}
+	
 
 	  public Student1 deleteUser(long userId) throws PortalException {
 	        Student1 student1 = student1LocalService.getStudent1(userId);

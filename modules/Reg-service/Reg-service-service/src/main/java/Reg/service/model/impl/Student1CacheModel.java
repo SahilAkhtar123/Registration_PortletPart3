@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
+import java.util.Date;
+
 /**
  * The cache model class for representing Student1 in entity cache.
  *
@@ -60,7 +62,7 @@ public class Student1CacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -92,6 +94,12 @@ public class Student1CacheModel
 		sb.append(securityAnswer);
 		sb.append(", acceptedTermsOfUse=");
 		sb.append(acceptedTermsOfUse);
+		sb.append(", eventDate=");
+		sb.append(eventDate);
+		sb.append(", eventType=");
+		sb.append(eventType);
+		sb.append(", ipAddress=");
+		sb.append(ipAddress);
 		sb.append("}");
 
 		return sb.toString();
@@ -173,6 +181,27 @@ public class Student1CacheModel
 
 		student1Impl.setAcceptedTermsOfUse(acceptedTermsOfUse);
 
+		if (eventDate == Long.MIN_VALUE) {
+			student1Impl.setEventDate(null);
+		}
+		else {
+			student1Impl.setEventDate(new Date(eventDate));
+		}
+
+		if (eventType == null) {
+			student1Impl.setEventType("");
+		}
+		else {
+			student1Impl.setEventType(eventType);
+		}
+
+		if (ipAddress == null) {
+			student1Impl.setIpAddress("");
+		}
+		else {
+			student1Impl.setIpAddress(ipAddress);
+		}
+
 		student1Impl.resetOriginalValues();
 
 		return student1Impl;
@@ -201,6 +230,9 @@ public class Student1CacheModel
 		securityAnswer = objectInput.readUTF();
 
 		acceptedTermsOfUse = objectInput.readBoolean();
+		eventDate = objectInput.readLong();
+		eventType = objectInput.readUTF();
+		ipAddress = objectInput.readUTF();
 	}
 
 	@Override
@@ -279,6 +311,21 @@ public class Student1CacheModel
 		}
 
 		objectOutput.writeBoolean(acceptedTermsOfUse);
+		objectOutput.writeLong(eventDate);
+
+		if (eventType == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(eventType);
+		}
+
+		if (ipAddress == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(ipAddress);
+		}
 	}
 
 	public String uuid;
@@ -296,5 +343,8 @@ public class Student1CacheModel
 	public String securityQuestion;
 	public String securityAnswer;
 	public boolean acceptedTermsOfUse;
+	public long eventDate;
+	public String eventType;
+	public String ipAddress;
 
 }

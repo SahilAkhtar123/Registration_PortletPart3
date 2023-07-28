@@ -32,5 +32,8 @@ create table Yash_Student1 (
 	password2 VARCHAR(75) null,
 	securityQuestion VARCHAR(75) null,
 	securityAnswer VARCHAR(75) null,
-	acceptedTermsOfUse BOOLEAN
+	acceptedTermsOfUse BOOLEAN,
+	eventDate DATE null,
+	eventType VARCHAR(75) null,
+	ipAddress VARCHAR(75) null
 );

@@ -19,6 +19,8 @@ import com.liferay.petra.sql.dsl.base.BaseTable;
 
 import java.sql.Types;
 
+import java.util.Date;
+
 /**
  * The table class for the &quot;Yash_Student1&quot; database table.
  *
@@ -62,6 +64,12 @@ public class Student1Table extends BaseTable<Student1Table> {
 		createColumn(
 			"acceptedTermsOfUse", Boolean.class, Types.BOOLEAN,
 			Column.FLAG_DEFAULT);
+	public final Column<Student1Table, Date> eventDate = createColumn(
+		"eventDate", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
+	public final Column<Student1Table, String> eventType = createColumn(
+		"eventType", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<Student1Table, String> ipAddress = createColumn(
+		"ipAddress", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 
 	private Student1Table() {
 		super("Yash_Student1", Student1Table::new);

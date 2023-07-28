@@ -34,5 +34,8 @@
 		<field name="securityQuestion" type="String" />
 		<field name="securityAnswer" type="String" />
 		<field name="acceptedTermsOfUse" type="boolean" />
+		<field name="eventDate" type="Date" />
+		<field name="eventType" type="String" />
+		<field name="ipAddress" type="String" />
 	</model>
 </model-hints>

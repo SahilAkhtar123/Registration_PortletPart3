@@ -17,6 +17,7 @@ package Reg.service.model;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.wrapper.BaseModelWrapper;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +57,9 @@ public class Student1Wrapper
 		attributes.put("securityQuestion", getSecurityQuestion());
 		attributes.put("securityAnswer", getSecurityAnswer());
 		attributes.put("acceptedTermsOfUse", isAcceptedTermsOfUse());
+		attributes.put("eventDate", getEventDate());
+		attributes.put("eventType", getEventType());
+		attributes.put("ipAddress", getIpAddress());
 
 		return attributes;
 	}
@@ -152,6 +156,24 @@ public class Student1Wrapper
 		if (acceptedTermsOfUse != null) {
 			setAcceptedTermsOfUse(acceptedTermsOfUse);
 		}
+
+		Date eventDate = (Date)attributes.get("eventDate");
+
+		if (eventDate != null) {
+			setEventDate(eventDate);
+		}
+
+		String eventType = (String)attributes.get("eventType");
+
+		if (eventType != null) {
+			setEventType(eventType);
+		}
+
+		String ipAddress = (String)attributes.get("ipAddress");
+
+		if (ipAddress != null) {
+			setIpAddress(ipAddress);
+		}
 	}
 
 	@Override
@@ -210,6 +232,26 @@ public class Student1Wrapper
 	}
 
 	/**
+	 * Returns the event date of this student1.
+	 *
+	 * @return the event date of this student1
+	 */
+	@Override
+	public Date getEventDate() {
+		return model.getEventDate();
+	}
+
+	/**
+	 * Returns the event type of this student1.
+	 *
+	 * @return the event type of this student1
+	 */
+	@Override
+	public String getEventType() {
+		return model.getEventType();
+	}
+
+	/**
 	 * Returns the first name of this student1.
 	 *
 	 * @return the first name of this student1
@@ -217,6 +259,16 @@ public class Student1Wrapper
 	@Override
 	public String getFirstName() {
 		return model.getFirstName();
+	}
+
+	/**
+	 * Returns the ip address of this student1.
+	 *
+	 * @return the ip address of this student1
+	 */
+	@Override
+	public String getIpAddress() {
+		return model.getIpAddress();
 	}
 
 	/**
@@ -405,6 +457,26 @@ public class Student1Wrapper
 	}
 
 	/**
+	 * Sets the event date of this student1.
+	 *
+	 * @param eventDate the event date of this student1
+	 */
+	@Override
+	public void setEventDate(Date eventDate) {
+		model.setEventDate(eventDate);
+	}
+
+	/**
+	 * Sets the event type of this student1.
+	 *
+	 * @param eventType the event type of this student1
+	 */
+	@Override
+	public void setEventType(String eventType) {
+		model.setEventType(eventType);
+	}
+
+	/**
 	 * Sets the first name of this student1.
 	 *
 	 * @param firstName the first name of this student1
@@ -412,6 +484,16 @@ public class Student1Wrapper
 	@Override
 	public void setFirstName(String firstName) {
 		model.setFirstName(firstName);
+	}
+
+	/**
+	 * Sets the ip address of this student1.
+	 *
+	 * @param ipAddress the ip address of this student1
+	 */
+	@Override
+	public void setIpAddress(String ipAddress) {
+		model.setIpAddress(ipAddress);
 	}
 
 	/**

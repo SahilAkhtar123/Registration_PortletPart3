@@ -280,6 +280,12 @@ public class Student1LocalServiceUtil {
 		return getService().getStudent1s(start, end);
 	}
 
+	public static List<Student1> getStudent1s(
+		String username, int start, int end) {
+
+		return getService().getStudent1s(username, start, end);
+	}
+
 	/**
 	 * Returns the number of student1s.
 	 *

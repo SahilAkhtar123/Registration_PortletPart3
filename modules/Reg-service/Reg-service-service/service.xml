@@ -20,6 +20,9 @@
 		<column name="securityQuestion" type="String" />
 		<column name="securityAnswer" type="String" />
 		<column name="acceptedTermsOfUse" type="boolean" />
+		<column name="eventDate" type="Date" />
+		<column name="eventType" type="String" />
+		<column name="ipAddress" type="String" />
 		
 		<finder name="Username" return-type="Collection">
 			<finder-column name="username" />

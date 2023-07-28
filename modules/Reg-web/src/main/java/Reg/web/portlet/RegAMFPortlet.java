@@ -26,6 +26,9 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -74,6 +77,11 @@ public class RegAMFPortlet extends MVCPortlet {
 		String securityAnswer = ParamUtil.getString(request, "securityAnswer");
 		boolean acceptedTerms = ParamUtil.getBoolean(request, "acceptedTerms");
 		
+		DateFormat df= new SimpleDateFormat("DD/MM/YYYY");
+        Date eventDate = ParamUtil.getDate(request,"eventDate", df);
+        String eventType = ParamUtil.getString(request, "eventType");
+		String ipAddress = ParamUtil.getString(request, "ipAddress");
+		
 		//Contacts1 entity
 		String homePhone = ParamUtil.getString(request,"homePhone");
 		String mobilePhone = ParamUtil.getString(request,"mobilePhone");
@@ -84,6 +92,9 @@ public class RegAMFPortlet extends MVCPortlet {
 		String city = ParamUtil.getString(request ,"city");
 		String state = ParamUtil.getString(request ,"state");
 		String zip = ParamUtil.getString(request ,"zip");
+		
+		
+		
 		
 		
 		log.info("firstName " + firstName + " lastName " + lastName + " emailAddress " + emailAddress + " userName "

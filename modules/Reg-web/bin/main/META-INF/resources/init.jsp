@@ -7,6 +7,17 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+
+
+
+
+
+<%@ page import="java.util.List" %>
+<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@ page import="com.liferay.portal.kernel.model.User" %>
+<%@ page import="Reg.service.service.Student1LocalServiceUtil" %>
+<%@ page import="Reg.service.model.Student1" %>
+
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
